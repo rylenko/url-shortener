@@ -1,0 +1,23 @@
+<%inherit file="../base.html" />
+<%namespace file="../_macros.html" import="render_pagination_widget" />
+<%namespace file="../_macros.html" import="render_short_url_card" />
+
+<%block name="title">
+	List
+</%block>
+
+<%block name="content">
+	<h1 align="center" class="mb-4">
+		List of your short URLs:
+	</h1>
+
+	% if current_page.items:
+		% for short_url in current_page.items:
+			${render_short_url_card(short_url)}
+		% endfor
+
+		${render_pagination_widget(current_page, "list")}
+	% else:
+		<h3 align="center">You do not have short urls yet.</h3>
+	% endif
+</%block>

@@ -1,0 +1,37 @@
+[tool.poetry]
+name = "app"
+version = "0.1.0"
+description = ""
+authors = []
+readme = "../README.md"
+license = "../LICENSE"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+alembic = "1.5.7"
+gunicorn = "20.0.4"
+itsdangerous = "1.1.0"
+Mako = "1.1.4"
+MarkupSafe = "1.1.1"
+# psycopg2-binary = "2.8.6"
+python-dotenv = "0.15.0"
+secure-cookie = "0.1.0"
+SQLAlchemy = "1.4.0"
+Werkzeug = "1.0.1"
+WTForms = "2.3.3"
+
+[tool.poetry.group.dev.dependencies]
+pyproject-flake8 = "6.0.0"
+mypy = "0.812"
+
+[tool.flake8]
+exclude = ["./migrations", "venv", ".git", "__pycache__", ".mypy_cache", ".pytest_cache"]
+ignore = ["E402", "W503"]
+max-line-length = 79
+
+[tool.mypy]
+ignore_missing_imports = true
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

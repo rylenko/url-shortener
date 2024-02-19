@@ -1,0 +1,14 @@
+<%inherit file="../base.html" />
+<%namespace file="../_macros.html" import="render_form_body" />
+
+<%block name="title">
+	Login
+</%block>
+
+<%block name="content">
+	<h1 align="center">Enter your account information to enter it:</h1>
+
+	<form method="POST">
+		${render_form_body(form)}
+	</form>
+</%block>

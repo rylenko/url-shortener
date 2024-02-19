@@ -1,0 +1,22 @@
+<%inherit file="base.html" />
+
+<%block name="title">
+	Index
+</%block>
+
+<%block name="content">
+	<h3 id="time-widget" align="center"></h3>
+
+	% if current_user.is_authenticated:
+		<h3 align="center">
+			Welcome to URL-Shortener,
+			${current_user.username}!
+		</h3>
+	% else:
+		<h3 align="center">Welcome to URL-Shortener!</h3>
+	% endif
+</%block>
+
+<%block name="js">
+	<script src="${current_app.static_root + "time-widget.js"}"></script>
+</%block>

@@ -1,0 +1,14 @@
+<%inherit file="../base.html" />
+
+<%block name="title">
+	Delete
+</%block>
+
+<%block name="content">
+	<h1 align="center">Delete your short URL:</h1>
+
+	<form method="POST">
+		<input type="hidden" name="csrf_token" value="${generate_csrf_token()}" />
+		<button type="submit" class="btn btn-danger">Delete</button>
+	</form>
+</%block>

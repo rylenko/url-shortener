@@ -1,0 +1,14 @@
+<%inherit file="../base.html" />
+<%namespace file="../_macros.html" import="render_form_body" />
+
+<%block name="title">
+	Deactivate
+</%block>
+
+<%block name="content">
+	<h1 align="center">Enter your password to deactivate account:</h1>
+
+	<form method="POST">
+		${render_form_body(form)}
+	</form>
+</%block>

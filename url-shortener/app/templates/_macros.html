@@ -1,0 +1,87 @@
+<%def name="render_form_body(obj)">
+	% for field in obj:
+		<div class="form-group">
+			% if field.name != "csrf_token":
+				${field.label}
+			% endif
+
+			${field}
+		</div>
+
+		% for error in field.errors:
+			<div class="alert alert-danger">
+				${error}
+			</div>
+		% endfor
+	% endfor
+</%def>
+
+<%def name="render_short_url_card(obj)">
+	<%
+		follow_url = url_for("follow", slug=obj.slug)
+	%>
+
+	<div class="card mb-4">
+		<div class="card-header">
+			Created at ${strftime(obj.created_at)} |
+			<a href="${url_for("delete", slug=obj.slug)}" style="color: darkred;">Delete</a>
+		</div>
+		<div class="card-body">
+			<h5 class="card-title">
+				<a href="${follow_url}">
+					${request.url_root[:-1] + follow_url}
+				</a>
+			</h5>
+			<p class="card-text">${obj.full_url}</p>
+		</div>
+		<div class="card-footer text-muted">
+			Clicks count: ${obj.clicks}
+		</div>
+	</div>
+</%def>
+
+
+<%def name="render_pagination_widget(obj, endpoint)">
+	% if obj.pages_count > 1:
+		<nav aria-label="Page navigation example">
+			<ul class="pagination">
+				<li class="page-item 
+					% if not obj.has_previous_page:
+						disabled 
+					% endif
+				">
+					<a class="page-link" aria-label="Previous"
+   					href="${url_for(endpoint, page=obj.previous_page_number) if obj.has_previous_page else ""}"
+					>
+						<span aria-hidden="true">&laquo;</span>
+					</a>
+				</li>
+
+				% for number in range(1, obj.pages_count + 1):
+					% if number > obj.current_page_number - 3 and number < obj.current_page_number + 3:
+						<li class="page-item
+							% if number == obj.current_page_number:
+								active
+							% endif
+						">
+							<a class="page-link" href="${url_for(endpoint, page=number)}">
+								${number}
+							</a>
+						</li>
+					% endif
+				% endfor %
+
+				<li class="page-item
+					% if not obj.has_next_page:
+						disabled
+					% endif
+				">
+					<a class="page-link" aria-label="Next"
+   					href="${url_for(endpoint, page=obj.next_page_number) if obj.has_next_page else ""}">
+						<span aria-hidden="true">&raquo;</span>
+					</a>
+				</li>
+			</ul>
+		</nav>
+	% endif
+</%def>

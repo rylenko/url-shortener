@@ -1,0 +1,12 @@
+<%inherit file="../base.html" />
+
+<%block name="title">
+	Profile
+</%block>
+
+<%block name="content">
+	<h3 align="center">Username: ${current_user.username}</h3>
+	<a href="${url_for("deactivate")}" class="btn btn-danger">
+		Deactivate
+	</a>
+</%block>
